@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Skills | {{ author_name }}{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold mb-4"><span class="accent-text">03.</span> Technical Skills</h2>
+
+<div class="row g-4">
+  {% for category, items in skill_categories.items %}
+    <div class="col-md-6">
+      <div class="card-custom p-4 h-100">
+        <h5 class="fw-bold text-white mb-3 border-bottom border-secondary pb-2">{{ category }}</h5>
+        <div class="d-flex flex-wrap gap-2">
+          {% for item in items %}
+            <span class="badge bg-dark text-light border border-secondary px-3 py-2 fs-6">{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

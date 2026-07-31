@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}About | {{ author_name }}{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold mb-4"><span class="accent-text">01.</span> About Me</h2>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card-custom p-4 mb-4">
+      <p class="fs-5 lh-base text-light">{{ bio }}</p>
+    </div>
+    <div class="card-custom p-4">
+      <h5 class="accent-text mb-3">Key Highlights</h5>
+      <ul class="mb-0 text-secondary">
+        {% for item in highlights %}
+          <li class="mb-2">{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card-custom p-4">
+      <h5 class="accent-text mb-3">Education & Training</h5>
+      {% for edu in education %}
+        <div class="mb-3 border-bottom border-secondary pb-2">
+          <h6 class="mb-1 fw-bold text-white">{{ edu.degree }}</h6>
+          <p class="small text-secondary mb-0">{{ edu.institution }} &bull; {{ edu.year }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

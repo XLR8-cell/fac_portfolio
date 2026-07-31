@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | {{ author_name }}{% endblock %}
+
+{% block content %}
+<div class="row align-items-center py-4">
+  <div class="col-lg-8">
+    <span class="badge accent-bg mb-3 px-3 py-2 fs-6">Software Engineer</span>
+    <h1 class="display-4 fw-bold mb-3">{{ headline }}</h1>
+    <p class="lead text-secondary mb-4">{{ summary }}</p>
+    <div class="d-flex gap-3">
+      <a href="{% url 'pages:projects' %}" class="btn btn-emerald accent-bg fw-bold px-4 py-2">Explore Projects</a>
+      <a href="{% url 'pages:contact' %}" class="btn btn-outline-light px-4 py-2">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5">
+  <h4 class="text-secondary mb-3">Core Stack Focus</h4>
+  <div class="d-flex flex-wrap gap-2">
+    {% for skill in featured_skills %}
+      <span class="card-custom px-3 py-2 text-emerald fw-semibold">{{ skill }}</span>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

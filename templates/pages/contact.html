@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | {{ author_name }}{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold mb-4"><span class="accent-text">04.</span> Contact</h2>
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card-custom p-5 text-center">
+      <h3 class="fw-bold text-white mb-3">Let's Connect</h3>
+      <p class="text-secondary mb-4 fs-5">{{ availability }}</p>
+      
+      <div class="d-flex flex-column gap-3 align-items-center mb-4">
+        <div><strong>Location:</strong> <span class="text-secondary">{{ location }}</span></div>
+        <div><strong>Email:</strong> <a href="mailto:{{ contact_email }}" class="accent-text text-decoration-none">{{ contact_email }}</a></div>
+      </div>
+
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{{ github_url }}" target="_blank" class="btn btn-outline-light px-4">GitHub Profile</a>
+        <a href="{{ linkedin_url }}" target="_blank" class="btn btn-emerald accent-bg fw-bold px-4">LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
