@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Project, Skills
 
 
 # Create your views here.
@@ -26,30 +27,9 @@ def about(request):
     return render(request, 'pages/about.html', context)
 
 def projects(request):
+    projects = Project.objects.all().order_by('-id')
     context = {
-        'project_list': [
-            {
-                'title': 'Hospital Management System (HMS)',
-                'tech': 'Python, OOP, SQLite',
-                'description': 'A modular healthcare administration system handling patient records, appointments, and diagnostic billing workflows.',
-                'status': 'Completed',
-                'github': 'https://github.com',
-            },
-            {
-                'title': 'Developer Portfolio Engine',
-                'tech': 'Django, Bootstrap 5, MVT Architecture',
-                'description': 'A multi-page dynamic portfolio featuring custom template inheritance, context processing, and clean URL routing.',
-                'status': 'Active',
-                'github': 'https://github.com',
-            },
-            {
-                'title': 'Library Management Portal',
-                'tech': 'Python, CSV Storage',
-                'description': 'Lightweight record management app designed for fast data processing and offline storage handling.',
-                'status': 'Completed',
-                'github': 'https://github.com',
-            },
-        ]
+        'projects': projects
     }
     return render(request, 'pages/projects.html', context)
 
