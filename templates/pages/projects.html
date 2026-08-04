@@ -1,27 +1,29 @@
-{% extends 'base.html' %}
-
-{% block title %}Projects | {{ author_name }}{% endblock %}
-
+{% extends 'base.html' %} 
+{% block title %}Projects | {{ author_name }}{% endblock %} 
 {% block content %}
 <h2 class="fw-bold mb-4"><span class="accent-text">02.</span> Projects</h2>
+<div class="projects-grid">
+  {% for project in projects %}
 
-<div class="row g-4">
-  {% for project in project_list %}
-    <div class="col-md-6 col-lg-4">
-      <div class="card-custom p-4 h-100 d-flex flex-column justify-content-between">
-        <div>
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="badge bg-dark border border-secondary text-emerald">{{ project.status }}</span>
-          </div>
-          <h4 class="fw-bold text-white mb-2">{{ project.title }}</h4>
-          <p class="text-secondary small mb-3">{{ project.description }}</p>
-        </div>
-        <div>
-          <p class="small fw-semibold accent-text mb-2">Tech: {{ project.tech }}</p>
-          <a href="{{ project.github }}" target="_blank" class="btn btn-sm btn-outline-light w-100">View Source</a>
-        </div>
-      </div>
+  <div class="project-card {% if project.is_featured %}featured{% endif %}">
+    <h2>{{project.name}}</h2>
+
+    {% if project.is_featured %}
+    <span class="badge">Featured</span>
+    {% endif %}
+    <p>{{project.description}}</p>
+    <p><strong>Tech:</strong>{{project.tech_stack}}</p>
+
+    <div class="links">
+      {%if project.github_url %}
+      <a href="{{project.github_url}}" target="_blank">Github</a>
+      {% endif %} {%if project.live_url %}
+      <a href="{{project.live_url}}" target="_blank">Live demo</a>
+      {% endif %}
     </div>
+  </div>
+  {% empty %}
+  <p>No projects yet.</p>
   {% endfor %}
 </div>
 {% endblock %}
