@@ -20,7 +20,7 @@ LEVEL_CHOICES = [
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    tech_stack = models.CharField()
+    tech_stack = models.CharField(max_length=200)
     github_url = models.URLField()
     live_url = models.URLField()
     is_featured = models.BooleanField(default=False)

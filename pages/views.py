@@ -5,10 +5,20 @@ from .models import Project, Skills
 # Create your views here.
 
 def home(request):
+    featured_projects = Project.objects.filter(is_featured=True)
+    
+    if not featured_projects.exists():
+        # If no featured projects, get the latest 3 projects
+       # featured_projects = Project.objects.all().order_by('-created_at')[:3]
+        featured_projects = Project.objects.filter(is_featured=True)  # Convert to list for easier manipulation
+        
     context = {
         'headline': 'Building Scalable Web Applications & Systems',
-        'summary': 'Software Engineering student with a passion for robust backend architecture, clean API design, and modern web frameworks.',
+        'summary': 'A modern portfolio showcasing projects, technical skills and our journey as software developers.',
         'featured_skills': ['Python', 'Django', 'React', 'REST APIs', 'PostgreSQL'],
+        'total_projects': Project.objects.count(),
+        'total_skills': Skills.objects.count(),
+        'featured_projects': featured_projects,
     }
     return render(request, 'pages/home.html', context)
 
