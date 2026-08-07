@@ -1,21 +1,78 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | {{ author_name }}{% endblock %}
+{% block title %}Home | FAC_2_TUAL {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
+ <section class="hero">
 <div class="row align-items-center py-4">
-  <div class="col-lg-8">
-    <span class="badge accent-bg mb-3 px-3 py-2 fs-6">Software Engineer</span>
-    <h1 class="display-4 fw-bold mb-3">{{ headline }}</h1>
-    <p class="lead text-secondary mb-4">{{ summary }}</p>
-    <div class="d-flex gap-3">
-      <a href="{% url 'pages:projects' %}" class="btn btn-emerald accent-bg fw-bold px-4 py-2">Explore Projects</a>
+  <div class="col-lg-7">
+    <span class="badge bg-success mb-3 px-4 py-2">Software Developers</span>
+    <h1 class="display-4 fw-bold mb-3">Welcome to <span class="accent-text">FAC_2_TUAL.</span></h1>
+    <p class="lead mb-4"> A modern portfolio showcasing projects, technical skills and our journey as software developers.</p>
+    <div class="d-flex flex-wrap gap-3">
+      <a href="{% url 'pages:projects' %}" class="btn btn-primary px-4 py-2">Explore Projects</a>
       <a href="{% url 'pages:contact' %}" class="btn btn-outline-light px-4 py-2">Get in Touch</a>
     </div>
   </div>
+  <div class="col-lg-5 text-center mt-5 mt-lg-0">
+      <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png" alt="Developer" class="img-fluid" style="max-width: 200px;">
+  </div>
 </div>
 
-<div class="mt-5">
+
+</section>
+
+<!--STATS-->
+  <section>
+    <div class="text-center mb-5">
+        <h2>Our Achievements</h2>
+        <p class="text-muted">A glimpse into our journey and accomplishments as software developers.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card stats-card">
+                <h2>{{ total_projects }}</h2>
+                <p>Completed Projects</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card">
+                <h2>{{ total_skills }}</h2>
+                <p>Technical Skills</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card">
+                <h2>6+</h2>
+                <p>Years of Experience</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stats-card">
+                <h2>100%</h2>
+                <p>Commitment and Dedication</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Core Stack-->
+
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2>Core Technologies Stack</h2>
+      <p class="text-muted">Our primary technologies and tools that drive our development process.</p>
+    </div>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      {% for skill in featured_skills %}
+        <span class="badge bg-success px-4 py-3 text-emerald fw-semibold">{{ skill }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!--<div class="mt-5">
   <h4 class="text-secondary mb-3">Core Stack Focus</h4>
   <div class="d-flex flex-wrap gap-2">
     {% for skill in featured_skills %}
@@ -23,4 +80,66 @@
     {% endfor %}
   </div>
 </div>
-{% endblock %}
+{% endblock %}-->
+
+<!-- FEATURED Projects-->
+ <section>
+  <h2 class="mb-4">Featured Projects</h2>
+  <div class="row g-4">
+    {% for project in featured_projects %}
+      <div class="col-md-4">
+        <div class="card card-custom h-100">
+          <div class="card-body d-flex flex-column">
+            <h4 class="card-title">{{ project.name }}</h4>
+            <p class="card-text text-secondary">{{ project.description }}</p>
+            <span class="badge bg-primary">{{project.tech_stack}}</span>
+            <a href="{{ project.github_url }}" target="_blank" class="mt-auto btn btn-outline-light">View Project</a>
+          </div>
+        </div>
+      </div>
+      <!--{% empty %}
+      <div class="col-12">
+       <div class="card">
+        <div class="card-body text-center">
+          <h4>Projects Coming Soon!</h4>
+          <p class="text-secondary">New Projects will be showcased here.<br>Stay tuned for upcoming projects and updates.</p>
+          </div>
+        </div>
+      </div> -->
+    {% endfor %}
+  </div>
+ </section>
+ 
+ <!-- ================= CTA ================= -->
+
+<section>
+
+    <div class="card p-5 text-center">
+
+        <h2>
+
+            Interested in Working Together?
+
+        </h2>
+
+        <p class="text-muted">
+
+            Feel free to explore our projects or get in touch to discuss
+            collaboration opportunities.<br> Let's Build Something Great Together!
+
+        </p>
+
+        <div class="mt-3">
+
+            <a href="{% url 'pages:contact' %}"
+                class="btn btn-primary">
+
+                Contact Us
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
